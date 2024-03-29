@@ -141,7 +141,7 @@ def create_comment(post_id):
             missing_fields.append(field)
 
     if missing_fields:
-        return {"error": f"{", ".join(missing_fields)} must be present in the request body"}, 400
+        return {"error": f"{', '.join(missing_fields)} must be present in the request body"}, 400
     
     body = data.get('body')
     current_user = token_auth.current_user()
