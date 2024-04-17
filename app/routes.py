@@ -69,7 +69,7 @@ def get_post(post_id):
         return {'error': f"Post with an ID of {post_id} does not exist"}, 404
 
 @app.route('/posts', methods=['POST'])
-# @token_auth.login_required
+@token_auth.login_required
 def create_post():
     if not request.is_json:
         return {'error': 'Your content-type must be applicaion/json'}
@@ -85,7 +85,7 @@ def create_post():
     title = data.get('title')
     body = data.get('body')
 
-    current_user="me" #token_auth.current_user()
+    current_user=token_auth.current_user()
 
     new_post = Post(title = title, body=body, user_id= current_user.id)
 
