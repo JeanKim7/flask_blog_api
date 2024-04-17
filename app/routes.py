@@ -54,9 +54,9 @@ def get_token():
 @app.route('/posts')
 def get_posts():
     select_stmt = db.select(Post)
-    search = request.args.get('search')
-    if search:
-        select_stmt = select_stmt.where(Post.title.ilike(f"%{search}%"))
+    # search = request.args.get('search')
+    # if search:
+    #     select_stmt = select_stmt.where(Post.title.ilike(f"%{search}%"))
     posts = db.session.execute(select_stmt).scalars().all()
     return [p.to_dict() for p in posts]
 
